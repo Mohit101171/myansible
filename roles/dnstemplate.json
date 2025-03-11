@@ -1,0 +1,18 @@
+{
+    "Comment": "Update the A record set",
+    "Changes": [
+      {
+        "Action": "UPSERT",
+        "ResourceRecordSet": {
+          "Name": "INSTANCE_NAME.roboshop.internal",
+          "Type": "A",
+          "TTL": 300,
+          "ResourceRecords": [
+            {
+              "Value": "IP"
+            }
+          ]
+        }
+      }
+    ]
+  }
