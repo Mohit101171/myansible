@@ -1,0 +1,69 @@
+- name: Roboshop Frontend Setup
+  hosts: FRONTEND
+  tags: frontend
+  become: yes
+  roles:
+    - frontend  
+
+- name: Roboshop MongoDB Setup
+  hosts: MONGODB
+  tags: mongodb
+  become: yes
+  roles:
+    - mongodb    
+
+- name: Roboshop MongoDB Setup
+  hosts: CATALOGUE
+  tags: catalogue
+  become: yes
+  roles:
+    - catalogue   
+
+- name: Roboshop MongoDB Setup
+  hosts: REDIS
+  tags: redis
+  become: yes
+  roles:
+    - redis   
+
+- name: Roboshop MongoDB Setup
+  hosts: USER
+  tags: user
+  become: yes
+  roles:
+    - user   
+
+- name: Roboshop MongoDB Setup
+  hosts: CART
+  tags: cart
+  become: yes
+  roles:
+    - cart   
+
+- name: Roboshop MongoDB Setup
+  hosts: MYSQL
+  tags: mysql
+  become: yes
+  roles:
+    - mysql   
+
+- name: Roboshop MongoDB Setup
+  hosts: SHIPPING
+  tags: shipping
+  become: yes
+  roles:
+    - shipping   
+
+- name: Roboshop MongoDB Setup
+  hosts: RABBITMQ
+  tags: rabbitmq
+  become: yes
+  roles:
+    - rabbitmq   
+
+- name: Roboshop MongoDB Setup
+  hosts: PAYMENT
+  tags: payment
+  become: yes
+  roles:
+    - payment                                   
