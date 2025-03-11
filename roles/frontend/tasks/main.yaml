@@ -1,0 +1,20 @@
+- name: Install Nginx
+  yum:
+    name:  nginx
+    state: present
+
+- name: Unzip archive for frontend
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: Remove Old Content from html directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: absent
+
+- name: Copy Static directory
+  ansible.builtin.copy:
+    src: /tmp/frontend-main/static/
+    dest: usr/share/nginx/html/
