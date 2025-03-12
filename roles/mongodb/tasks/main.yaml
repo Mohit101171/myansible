@@ -4,8 +4,9 @@
    dest: /etc/yum.repos.d/mongodb.repo
 
 - name: Install MongoDB
-  yum: mongodb-org
-  state: present
+  yum:
+   name: mongodb-org
+   state: present
 
 # - name : Update IP in mongod.conf
 #   ansible.builtin.replace:
