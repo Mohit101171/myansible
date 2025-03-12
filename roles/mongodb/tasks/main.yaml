@@ -8,12 +8,23 @@
    name: mongodb-org
    state: present
 
-# - name : Update IP in mongod.conf
-#   ansible.builtin.replace:
-#     path: /etc/mongod.conf
-#     regexp: '(\s+)old\.host\.name(\s+.*)?$'
-#     replace: '\1new.host.name\2'
+- name: Update IP in mongod.conf
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
 
+- name: Restart MongoDB service
+  systemd:
+   name: mongod
+   state: restarted
+   enabled: yes
+
+- name: Download and Unzip MongoDB Schema
+  ansible.builtin.unarchive:
+  src: https://github.com/roboshop-devops-project/mongodb/archive/main.zip
+  dest: /tmp
+  remote_src: yes
 
 # Setup MongoDB repos.
 
