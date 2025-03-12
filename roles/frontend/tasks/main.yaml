@@ -19,3 +19,14 @@
     src: /tmp/frontend-main/static/
     dest: usr/share/nginx/html/
     remote_src: yes
+
+- name: Move localhost.conf to frontend machine
+  ansible.builtin.copy:
+    src: roboshop.conf
+    dest: /etc/nginx/default.d/roboshop.conf
+
+- name: Restart and enable Nginx
+  systemd:
+    name: nginx
+    state: restarted
+    enabled: true
