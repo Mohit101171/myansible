@@ -23,3 +23,15 @@
     enablerepo: remi
     state: present
 
+- name: Update IP in redis.conf
+  ansible.builtin.replace:
+    path: /etc/redis/redis.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: Restart and enable redis service
+  systemd:
+    name: redis
+    state: restarted
+    enabled: yes
+
