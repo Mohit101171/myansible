@@ -31,7 +31,7 @@
     file: "/tmp/mongodb-main/catalogue.js"
     idempotent: yes
 
-- name: Load Schema for Catalogue
+- name: Load Schema for Users
   community.mongodb.mongodb_shell:
     file: "/tmp/mongodb-main/users.js"
     idempotent: yes
