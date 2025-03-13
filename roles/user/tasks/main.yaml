@@ -1,0 +1,35 @@
+- name: Install NodeJS, Make and GCC
+  yum:
+   name:
+    - nodejs
+    - make
+    - gcc-c++
+
+- name: Add roboshop user
+  ansible.builtin.user:
+   name: roboshop
+
+- name: Download and unzip user archive
+  ansible.builtin.unarchive:
+   src: https://github.com/roboshop-devops-project/user/archive/main.zip
+   dest: /tmp
+   remote_src: yes
+
+- name: Remove old content from user directory
+  ansible.builtin.file:
+   path: /home/roboshop/user
+   state: absent
+
+# $ curl -s -L -o /tmp/user.zip "https://github.com/roboshop-devops-project/user/archive/main.zip"
+# $ cd /home/roboshop
+# $ unzip /tmp/user.zip
+# $ mv user-main user
+# $ cd /home/roboshop/user
+# $ npm install 
+# Now, lets set up the service with systemctl.
+
+
+# # mv /home/roboshop/user/systemd.service /etc/systemd/system/user.service
+# # systemctl daemon-reload
+# # systemctl start user
+# # systemctl enable user

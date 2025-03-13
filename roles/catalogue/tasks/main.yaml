@@ -1,4 +1,4 @@
-- name: Install NodeJS
+- name: Install NodeJS, Make and GCC
   yum:
    name:
     - nodejs
