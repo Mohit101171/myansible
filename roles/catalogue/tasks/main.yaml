@@ -34,13 +34,18 @@
     path: /home/roboshop/catalogue
   become_user: roboshop
 
+- name: Copy Systemd service file of catalogue to setup service
+  ansible.builtin.copy:
+    src: systemd.service
+    dest: /etc/systemd/system/catalogue.service
 
+- name: Restart catalogue service
+  systemd:
+    name: catalogue
+    state: restarted
+    daemon_reload: true
+    enabled: yes
 
-
-
-# $ npm install 
-# NOTE: We need to update the IP address of MONGODB Server in systemd.service file
-# Now, lets set up the service with systemctl.
 
 
 # # mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
