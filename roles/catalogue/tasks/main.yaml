@@ -1,0 +1,49 @@
+- name: Install NodeJS
+  yum:
+   name:
+    - nodejs
+    - make
+    - gcc-c++
+   state: present
+
+- name: Add Roboshop user
+  ansible.builtin.user:
+    name: roboshop
+
+- name: Download and unzip Catalogue Archive
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/catalogue/archive/main.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: Remove old content from catalogue directory
+  ansible.builtin.file:
+    path: /home/roboshop/catalogue
+    state: absent
+
+- name: Copy extracted content to catalogue directory
+  ansible.builtin.copy:
+   src: /tmp/catalogue-main/
+   dest: /home/roboshop/catalogue/
+   remote_src: yes
+   owner: roboshop
+   group: roboshop
+
+- name: Install NodeJs dependencies
+  community.general.npm:
+    path: /home/roboshop/catalogue
+  become_user: roboshop
+
+
+
+
+
+# $ npm install 
+# NOTE: We need to update the IP address of MONGODB Server in systemd.service file
+# Now, lets set up the service with systemctl.
+
+
+# # mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
+# # systemctl daemon-reload
+# # systemctl start catalogue
+# # systemctl enable catalogue

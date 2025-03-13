@@ -26,10 +26,10 @@
    dest: /tmp
    remote_src: yes
 
-# - name: Load Schema for Catalogue
-#   community.mongodb.mongodb_shell:
-#     file: "/tmp/mongodb-main/catalogue.js"
-#     idempotent: yes
+- name: Load Schema for Catalogue
+  community.mongodb.mongodb_shell:
+    file: "/tmp/mongodb-main/catalogue.js"
+    idempotent: yes
 
 - name: Load Schema for Users
   community.mongodb.mongodb_shell:
