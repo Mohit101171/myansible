@@ -1,0 +1,47 @@
+- name: Install NodeJS, Make and GCC
+  yum:
+   name:
+    - nodejs
+    - make
+    - gcc-c++
+   state: present
+
+- name: Add Roboshop user
+  ansible.builtin.user:
+    name: roboshop
+
+- name: Download and unzip {{COMPONENT}} Archive
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/{{COMPONENT}}/archive/main.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: Remove old content from {{COMPONENT}} directory
+  ansible.builtin.file:
+    path: /home/roboshop/{{COMPONENT}}
+    state: absent
+
+- name: Copy extracted content to {{COMPONENT}} directory
+  ansible.builtin.copy:
+   src: /tmp/{{COMPONENT}}-main/
+   dest: /home/roboshop/{{COMPONENT}}/
+   remote_src: yes
+   owner: roboshop
+   group: roboshop
+
+- name: Install NodeJs dependencies
+  community.general.npm:
+    path: /home/roboshop/{{COMPONENT}}
+  become_user: roboshop
+
+- name: Copy Systemd service file of {{COMPONENT}} to setup service
+  ansible.builtin.copy:
+    src: systemd.service
+    dest: /etc/systemd/system/{{COMPONENT}}.service
+
+- name: Restart {{COMPONENT}} service
+  systemd:
+    name: "{{COMPONENT}}""
+    state: restarted
+    daemon_reload: true
+    enabled: yes
