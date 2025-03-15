@@ -1,0 +1,47 @@
+- name: Install NodeJS, Make and GCC
+  yum:
+   name:
+    - nodejs
+    - make
+    - gcc-c++
+
+- name: Add roboshop user
+  ansible.builtin.user:
+   name: roboshop
+
+- name: Download and unzip cart archive
+  ansible.builtin.unarchive:
+   src: https://github.com/roboshop-devops-project/cart/archive/main.zip
+   dest: /tmp
+   remote_src: yes
+
+- name: Remove old content from cart directory
+  ansible.builtin.file:
+   path: /home/roboshop/cart
+   state: absent
+
+- name: Copy extracted content to cart directory
+  ansible.builtin.copy:
+   src: /tmp/cart-main/
+   dest: /home/roboshop/cart/
+   remote_src: yes
+   owner: roboshop
+   group: roboshop
+
+- name: Install NodeJs dependencies
+  community.general.npm:
+    path: /home/roboshop/cart
+  become_user: roboshop
+
+- name: Copy systemd.service file of user to setup service
+  ansible.builtin.copy:
+   src: systemd.service
+   dest: /etc/systemd/system/cart.service
+
+- name: Restart and enable cart service
+  systemd:
+   name: cart
+   state: restarted
+   daemon_reload: true
+   enabled: yes
+
