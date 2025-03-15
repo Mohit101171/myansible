@@ -20,6 +20,33 @@
    path: /home/roboshop/user
    state: absent
 
+- name: Copy extracted content to user directory
+  ansible.builtin.copy:
+   src: /tmp/user-main/
+   dest: /home/roboshop/user/
+   remote_src: yes
+   owner: roboshop
+   group: roboshop
+
+- name: Install NodeJs dependencies
+  community.general.npm:
+    path: /home/roboshop/user
+  become_user: roboshop
+
+- name: Copy systemd.service file of user to setup service
+  ansible.builtin.copy:
+   src: systemd.service
+   dest: /etc/systemd/system/user.service
+
+- name: Restart and enable user service
+  systemd:
+   name: user
+   state: restarted
+   daemon_reload: true
+   enabled: yes
+
+
+
 # $ curl -s -L -o /tmp/user.zip "https://github.com/roboshop-devops-project/user/archive/main.zip"
 # $ cd /home/roboshop
 # $ unzip /tmp/user.zip
