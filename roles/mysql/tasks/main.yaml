@@ -11,7 +11,7 @@
 - name: Install MySql
   yum:
    name: 
-    - mysql-community-server
+    - mysql-server
    state: present
 
 - name: Start and enable MySql service
