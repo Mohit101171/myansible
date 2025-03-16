@@ -1,0 +1,29 @@
+# # yum install maven -y
+# As per the standard process, we always run the applications as a normal user.
+# Create a user
+
+- name: Install Maven
+  yum:
+   name: Maven
+   state: present
+
+- name: Include Role Common
+  include_role:
+   name: common
+   tasks_from: download.yaml
+
+- name: Make maven package
+  shell: mvn clean package; mv target/shipping-1.0.jar shipping.jar
+  args: 
+   chdir:  /home/roboshop/{{COMPONENT}}
+
+- name: Include common role for systemd task
+  include_role:
+   name: common
+   tasks_from: systemd.yaml
+
+
+# # mv /home/roboshop/shipping/systemd.service /etc/systemd/system/shipping.service
+# # systemctl daemon-reload
+# # systemctl start shipping 
+# # systemctl enable shipping
