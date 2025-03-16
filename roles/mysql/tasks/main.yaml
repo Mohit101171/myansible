@@ -3,9 +3,9 @@
    src: mysql.repo
    dest: /etc/yum.repos.d/mysql.repo
 
-- name: Remove mariadb-libs -y
+- name: Remove mariadb-libs
   yum:
-   name: mariadb-libs -y
+   name: mariadb-libs
    state: absent
 
 - name: Install MySql
