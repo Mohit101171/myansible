@@ -24,6 +24,8 @@
   shell: echo 'show databases' | mysql -uroot -pRoboShop@1
   register: out
   ignore_errors: yes
+  debug:
+   msg: "{{out.rc}}"
 
 - name: Grab default Password
   shell: grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}'
@@ -35,8 +37,7 @@
     src: reset.sql
     dest: /tmp/reset.sql
   when: out.rc != 0
-  debug:
-   msg: "{{out.rc}}"
+
 
 - name: Reset MySQL Password
   shell: "mysql --connect-expired-password -u root -p'{{default_pass.stdout}}' </tmp/reset.sql"
