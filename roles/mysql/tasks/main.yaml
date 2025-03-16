@@ -12,9 +12,11 @@
   yum:
    name: 
     - mysql-server
-    - PyMySQL
    state: present
-
+  pip:
+    name: pymysql
+    state: present
+    
 - name: Start and enable MySqld service
   systemd:
    name: mysqld
