@@ -14,7 +14,6 @@
     - mysql-community-server
     - MySQL-python
    state: present
-   register: out
 
 - name: Start and enable MySql service
   systemd:
