@@ -1,7 +1,5 @@
 - name: Install Erlang
-  yum: 
-   name: https://github.com/rabbitmq/erlang-rpm/releases/download/v27.3/erlang-27.3-1.el9.x86_64.rpm
-   state: present
+  shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 
 - name: Install RabbitMq repos
   shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
