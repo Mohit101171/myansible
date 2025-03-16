@@ -4,7 +4,7 @@
 
 - name: Install Maven
   yum:
-   name: Maven
+   name: maven
    state: present
 
 - name: Include Role Common
@@ -23,7 +23,3 @@
    tasks_from: systemd.yaml
 
 
-# # mv /home/roboshop/shipping/systemd.service /etc/systemd/system/shipping.service
-# # systemctl daemon-reload
-# # systemctl start shipping 
-# # systemctl enable shipping
