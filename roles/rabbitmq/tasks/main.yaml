@@ -12,7 +12,7 @@
 - name: Start and enable RabbitMq service
   systemd:
    name: rabbitmq-server
-   state: restared
+   state: restarted
    enabled: yes
 
 - name: Create RabbitMq App user
