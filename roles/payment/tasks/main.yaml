@@ -1,0 +1,38 @@
+# Install Python 3
+
+# # yum install python36 gcc python3-devel -y
+# Create a user for running the application
+
+- name: Install Python36, gcc and python3-devel
+  yum:
+   name:
+    - python36
+    - gcc
+    - python3-devel
+
+- name: Include common role
+  include_role:
+   name: common
+   tasks_from: download.yaml
+
+- name: Install specified python requirements
+  ansible.builtin.pip:
+    requirements: requirements.txt
+    args:
+     chdir: /home/roboshop/{{COMPONENT}}
+
+# Install the dependencies
+
+# # cd /home/roboshop/payment 
+# # pip3 install -r requirements.txt
+# Note: Above command may fail with permission denied, So run as root user
+
+# Update the roboshop user and group id in payment.ini file.
+
+# Setup the service
+
+
+# # mv /home/roboshop/payment/systemd.service /etc/systemd/system/payment.service
+# # systemctl daemon-reload
+# # systemctl enable payment 
+# # systemctl start payment
