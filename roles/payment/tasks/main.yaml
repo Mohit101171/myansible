@@ -25,6 +25,22 @@
   debug:
    msg: "{{ROBOSHOP_USER}}"
 
+- name: Update roboshop user id
+  ansible.builtin.lineinfile:
+    path: /home/roboshop/{{COMPONENT}}/{{COMPONENT}}.ini
+    regexp: '^uid'
+    line: uid = {{ROBOSHOP_USER.uid}}
+
+- name: Update roboshop group id
+  ansible.builtin.lineinfile:
+    path: /home/roboshop/{{COMPONENT}}/{{COMPONENT}}.ini
+    regexp: '^gid'
+    line: gid = {{ROBOSHOP_USER.group}}
+
+- name: Include Common role for Systemd task
+  include_role:
+   name: common
+   tasks_from: systemd
 
 
 # Update the roboshop user and group id in payment.ini file.
