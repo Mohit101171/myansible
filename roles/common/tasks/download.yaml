@@ -1,0 +1,3 @@
+- name: Include download from github
+  ansible.builtin.include_tasks:
+   file: github-download.yaml
