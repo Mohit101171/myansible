@@ -28,7 +28,7 @@
   #  msg: "{{out}}"
 
 - name: Grab default Password
-  shell: grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}'
+  shell: grep 'A temporary password' /var/log/mysql/mysqld.log | awk '{print $NF}'
   register: default_pass
   when: out.rc != 0
 
