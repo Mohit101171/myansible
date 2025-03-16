@@ -35,6 +35,8 @@
     src: reset.sql
     dest: /tmp/reset.sql
   when: out.rc != 0
+  debug:
+   msg: "{{out.rc}}"
 
 - name: Reset MySQL Password
   shell: "mysql --connect-expired-password -u root -p'{{default_pass.stdout}}' </tmp/reset.sql"
