@@ -24,8 +24,8 @@
   shell: echo 'show databases' | mysql -uroot -pRoboShop@1
   register: out
   ignore_errors: yes
-  debug:
-   msg: "{{out}}"
+  # debug:
+  #  msg: "{{out}}"
 
 - name: Grab default Password
   shell: grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}'
