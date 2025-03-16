@@ -12,7 +12,7 @@
   yum:
    name: 
     - mysql-community-server
-    - MySQL-connector-python
+    - mysql-connector-python
    state: present
 
 - name: Start and enable MySql service
