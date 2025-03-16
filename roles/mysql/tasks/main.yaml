@@ -25,7 +25,7 @@
   register: out
   ignore_errors: yes
   debug:
-   msg: "{{out.rc}}"
+   msg: "{{out}}"
 
 - name: Grab default Password
   shell: grep 'A temporary password' /var/log/mysqld.log | awk '{print $NF}'
