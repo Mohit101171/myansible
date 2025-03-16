@@ -1,0 +1,29 @@
+# Erlang is a dependency which is needed for RabbitMQ.
+
+- name: Install Erlang
+  yum: https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm
+
+- name: Install RabbitMq repos
+  shell: curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
+
+- name: Install RabbitMq
+  yum:
+   name: rabbitmq-server
+   state: present
+
+- name: Start and enable RabbitMq service
+  systemd:
+   name: rabbitmq-server
+   state: restared
+   enabled: yes
+
+- name: Create RabbitMq App user
+  community.rabbitmq.rabbitmq_user:
+    user: roboshop
+    password: roboshop123
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
+    tags: administrator

@@ -1,7 +1,3 @@
-# # yum install maven -y
-# As per the standard process, we always run the applications as a normal user.
-# Create a user
-
 - name: Install Maven
   yum:
    name: maven
