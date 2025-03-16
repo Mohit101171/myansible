@@ -5,11 +5,11 @@
 
 - name: Install Python36, gcc and python3-devel
   yum:
-    name:
-      - python36
-      - gcc
-      - python3-devel
-    state: present
+   name:
+    - python36
+    - gcc
+    - python3-devel
+   state: present
 
 - name: Include common role
   include_role:
