@@ -37,7 +37,7 @@
   when: out.rc != 0
 
 - name: Reset MySQL Password
-  shell: mysql --connect-expired-password -u root -p"{{default_pass.stdout}}" </tmp/reset.sql
+  shell: "mysql --connect-expired-password -u root -p'{{default_pass.stdout}}' </tmp/reset.sql"
   when: out.rc != 0
 
 
