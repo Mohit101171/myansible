@@ -16,7 +16,7 @@
 
 - name: Start and enable MySql service
   systemd:
-   name: mysql
+   name: mysqld
    state: restarted
    enabled: yes
 
