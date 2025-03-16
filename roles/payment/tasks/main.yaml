@@ -4,7 +4,7 @@
 # Create a user for running the application
 
 - name: Install Python36, gcc and python3-devel
-  yum:
+  dnf:
    name:
     - python36
     - gcc
