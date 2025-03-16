@@ -21,11 +21,11 @@
     requirements: /home/roboshop/{{COMPONENT}}/requirements.txt
     executable: pip3 
 
-# Install the dependencies
+- name: Print Roboshop User
+  debug:
+   msg: "{{ROBOSHOP_USER}}"
 
-# # cd /home/roboshop/payment 
-# # pip3 install -r requirements.txt
-# Note: Above command may fail with permission denied, So run as root user
+
 
 # Update the roboshop user and group id in payment.ini file.
 
