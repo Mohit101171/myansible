@@ -13,10 +13,12 @@
    name: 
     - mysql-server
    state: present
+
+- name: Install pymysql
   pip:
     name: pymysql
     state: present
-    
+
 - name: Start and enable MySqld service
   systemd:
    name: mysqld
