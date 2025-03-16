@@ -1,6 +1,6 @@
 - name: Copy Systemd service file of {{COMPONENT}} to setup service
   ansible.builtin.copy:
-    src: roles/{{COMPONENT}}/files/systemd.service
+    src: systemd.service
     dest: /etc/systemd/system/{{COMPONENT}}.service
 
 - name: Restart {{COMPONENT}} service
