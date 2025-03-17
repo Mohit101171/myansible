@@ -1,0 +1,7 @@
+- name: Copy set-hostname file to remote machine
+  copy:
+   src: set-hostname
+   dest: /tmp
+
+- name: Set Hostname {{COMPONENT}}
+  shell: bash /tmp/set-hostname {{COMPONENT}}
