@@ -1,6 +1,6 @@
 - name: Download and Unarchive Node Exporter
   unarchive:
-   src: https://github.com/prometheus/node_exporter/releases/download/v1.9.0/node_exporter-{{NE_VERSION}}.linux-amd64.tar.gz
+   src: https://github.com/prometheus/node_exporter/releases/download/v{{NE_VERSION}}/node_exporter-{{NE_VERSION}}.linux-amd64.tar.gz
    dest: /opt
    remote_src: yes
 
