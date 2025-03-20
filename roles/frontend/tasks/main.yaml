@@ -31,3 +31,8 @@
     name: nginx
     state: started
     enabled: yes
+
+- name: Include common role for node_exporter installation
+  include_role:
+   name: common
+   tasks_from: node_exporter.yaml

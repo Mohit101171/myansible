@@ -18,3 +18,7 @@
 - name: Include Systemd
   ansible.builtin.include_tasks: 
    file: systemd.yaml
+
+- name: Include node_exporter
+  ansible.builtin.include_tasks: 
+   file: node_exporter.yaml
