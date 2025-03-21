@@ -1,6 +1,6 @@
 - name: UPDATE | Copy prometheus.yml to prometheus directory
   template:
-   src: prometheus.yaml
+   src: prometheus.yml
    dest: /opt/prometheus/prometheus.yml
 
 - name: Restart and enable Prometheus
