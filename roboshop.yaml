@@ -66,4 +66,11 @@
   tags: payment
   become: yes
   roles:
-    - payment                                   
+    - payment     
+
+- name: Roboshop Prometheus Setup
+  hosts: PROMETHEUS
+  tags: prometheus
+  become: yes
+  roles:
+    - prometheus                                
