@@ -23,7 +23,7 @@
 
 - name: Restart AlertManager Service
   systemd:
-    name: alertmanager
-    state: restarted
-    enabled: yes  
-    daemeon_reload: true 
+   name: alertmanager
+   state: restarted
+   enabled: yes  
+   daemon_reload: true 
