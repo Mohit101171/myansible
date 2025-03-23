@@ -1,6 +1,6 @@
 - name: UPDATE or Copy prometheus.yml to prometheus directory
   template:
-   src: {{item}}.yml
+   src: "{{item}}.yml"
    dest: /opt/prometheus/{{item}}.yml
    loop:
     - prometheus
