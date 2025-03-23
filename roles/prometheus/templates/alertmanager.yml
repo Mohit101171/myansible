@@ -10,8 +10,8 @@ receivers:
       - to: mk.singh0246@gmail.com
         from: mk.singh0246@gmail.com
         smarthost: email-smtp.us-east-1.amazonaws.com:587
-        auth_username: {{SES_USER}}
-        auth_password: {{SES_KEY}}
+        auth_username: "{{SES_USER}}"
+        auth_password: "{{SES_KEY}}"
         require_tls: yes
         send_resolved: true
 inhibit_rules:
