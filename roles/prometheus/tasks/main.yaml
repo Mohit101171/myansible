@@ -1,8 +1,12 @@
 - name: UPDATE | Copy prometheus.yml to prometheus directory
   template:
    src: prometheus.yml
-   dest: /opt/prometheus/prometheus.yml
-
+   dest: /opt/prometheus/{{item}}.yml
+   loop:
+    - prometheus
+    - alerts
+    - records
+    
 - name: Restart and enable Prometheus
   systemd:
    name: prometheus

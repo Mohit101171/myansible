@@ -1,0 +1,28 @@
+groups:
+  - name: HardwareResources
+    rules:
+      - alert: HighCPU
+        expr: cpu_usage_in_percentage > 90
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "HighCPU on {%raw%}{{ $labels.tagName }}{%endraw%}"
+
+      - alert: HighMemUsage
+        expr: ceil((node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100) > 90
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "HighMem Usage on {%raw%}{{ $labels.tagName }}{%endraw%}"
+
+  - name: Services
+    rules:
+      - alert: ServiceDown
+        expr: roboshop_app_monitor == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: {%raw%}"Service {{ $labels.name }}  Down on {{ $labels.tagName }} Server"{%endraw%}
