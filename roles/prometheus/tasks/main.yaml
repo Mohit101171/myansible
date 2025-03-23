@@ -25,4 +25,5 @@
   systemd:
     name: alertmanager
     state: restarted
-    enabled: yes   
+    enabled: yes  
+    daemeon_reload: true 
