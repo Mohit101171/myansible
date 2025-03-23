@@ -1,4 +1,4 @@
-- name: UPDATE | Copy prometheus.yml to prometheus directory
+- name: UPDATE or Copy prometheus.yml to prometheus directory
   template:
    src: prometheus.yml
    dest: /opt/prometheus/{{item}}.yml
