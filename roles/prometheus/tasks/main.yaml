@@ -1,17 +1,18 @@
-- name: Update Prometheus Config
+- name: UPDATE or Copy prometheus.yml to prometheus directory
   template:
-    src: "{{item}}.yml"
-    dest: /opt/prometheus/{{item}}.yml
+   src: "{{item}}.yml"
+   dest: /opt/prometheus/{{item}}.yml
   loop:
     - prometheus
     - alerts
     - records
-
-- name: Restart Prometheus Service
+    
+- name: Restart and enable Prometheus
   systemd:
-    name: prometheus
-    state: restarted
-    enabled: yes
+   name: prometheus
+   enabled: yes
+   state: restarted
+   daemon_reload: true
 
 - name: Update AlertManager Config
   template:
@@ -24,4 +25,4 @@
   systemd:
     name: alertmanager
     state: restarted
-    enabled: yes
+    enabled: yes   
