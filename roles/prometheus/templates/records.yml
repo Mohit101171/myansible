@@ -5,3 +5,4 @@ groups:
         expr: 100 - (rate(node_cpu_seconds_total{mode="idle"}[1m]) * 100)
       - record: roboshop_app_monitor
         expr: node_systemd_unit_state{name=~"(cart|catalogue|nginx|shipping|user|payment).service",state="active"}
+      
