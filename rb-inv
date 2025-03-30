@@ -19,4 +19,4 @@ shipping.roboshop.internal
 [PAYMENT]
 payment.roboshop.internal
 [PROMETHEUS]
-172.31.7.51
+prometheus.roboshop.internal
