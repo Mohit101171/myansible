@@ -1,5 +1,5 @@
 - name: Download GPG Key for Filebeat
-  ansibble.builtin.rpm_key:
+  ansible.builtin.rpm_key:
     state: present
     key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
 
