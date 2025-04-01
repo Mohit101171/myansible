@@ -22,3 +22,7 @@
 - name: Include node_exporter
   ansible.builtin.include_tasks: 
    file: node_exporter.yaml
+
+- name: Include Filebeat Setup Task
+  ansible.builtin.include_tasks: 
+   file: filebeat.yaml

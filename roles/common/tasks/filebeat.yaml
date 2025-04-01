@@ -1,0 +1,24 @@
+- name: Download GPG Key for Filebeat
+  ansibble.builtin.rpm_key:
+    state: present
+    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
+- name: Setup repo File and copy
+  src: elastic.repo
+  dest: /etc/yum.repos.d/elastic.repo
+
+- name: Install filebeat
+  yum:
+    name: filebeat
+    state: installed
+
+- name: Update Filebeat Configuration
+  template:
+    src: filebeat.yml
+    dest: /etc/filebeat/filebeat.yml
+
+- name: Start Filebeat service
+  systemd:
+    name: filebeat
+    state: restarted
+    enabled: yes
