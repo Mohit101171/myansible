@@ -4,6 +4,7 @@
     key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
 
 - name: Setup repo File and copy
+  copy:
   src: elastic.repo
   dest: /etc/yum.repos.d/elastic.repo
 
