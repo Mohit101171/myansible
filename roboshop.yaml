@@ -69,7 +69,7 @@
     - payment     
 
 - name: Roboshop Prometheus Setup
-  hosts: PROMETHEUS
+  hosts: USER
   tags: prometheus
   become: yes
   roles:
